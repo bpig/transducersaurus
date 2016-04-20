@@ -18,13 +18,14 @@ Probably a better way to do this but I can't tell from the code.
 __author__ = "Josef Robert Novak <novakj@gavo.t.u-tokyo.ac.jp>"
 __version__ = "$Revision: $"
 
-#from numpy import ones, empty
+# from numpy import ones, empty
 
 def open(file):
     return T3Mdef(file)
 
 class T3Mdef:
     "Read Sphinx-III format model definition files as required by tcubed"
+
     def __init__(self, filename):
         self.info = {}
         if filename != None:
@@ -56,8 +57,8 @@ class T3Mdef:
         # Skip field description lines
         spam = self.fh.readline().rstrip()
         spam = self.fh.readline().rstrip()
-        
-        #tcubed doesn't require much mdef organization. we just want the mdef lines
+
+        # tcubed doesn't require much mdef organization. we just want the mdef lines
         self.allfields = []
         while True:
             spam = self.fh.readline().rstrip()
@@ -65,6 +66,5 @@ class T3Mdef:
                 break
             fields = spam.split()
             self.allfields.append(fields)
-            triphone = (fields[1],fields[0], fields[2], fields[3])
+            triphone = (fields[1], fields[0], fields[2], fields[3])
             self.tiedlist[triphone] = len(self.allfields)
-            
